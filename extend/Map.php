@@ -8,7 +8,7 @@ class Map
 	/**
 	 * 根据地址获取经纬度
 	 * @param  string $address 地址信息
-	 * @return Array         
+	 * @return Array
 	 */
 	public static function getLngLat($address = '')
 	{

@@ -7,6 +7,7 @@ class Email
 	public static function send($address = '', $title = '无标题', $content = '您好！')
 	{
 		if($address == ''){
+			
 			return false;
 		}
 		try {
