@@ -8,7 +8,7 @@
                     <a href="#" class="slide-next"><i class="slide-arrow-right"></i></a>
                     <ul class="slideshow">
                         {volist name="featured0" id="vo"}
-                        <li><a target="_blank" href="{$vo->url}" class="item-large"><img class="ad-pic" src="__ROOT__/{$vo.image}" /></a></li>
+                        <li><a target="_blank" href="{$vo->url}" class="item-large"><img class="ad-pic" src="__ROOT__{$vo.image}" /></a></li>
                         {/volist}
                     </ul>
                 </div>
@@ -52,7 +52,7 @@
                                             </div> -->
                                         </div>
                                         <div class="borderbox">
-                                            <img src="__ROOT__/{$vo->image}" />
+                                            <img src="__ROOT__{$vo->image}" />
                                         </div>
                                     </div>
                                 </a>
