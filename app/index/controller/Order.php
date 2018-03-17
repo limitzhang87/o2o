@@ -21,14 +21,19 @@ class Order extends Base
 		//判断是否是从本页面中跳转过来
 		//dump($_SERVER['HTTP_REFERER']);
 		//dump(request()->server('HTTP_REFERER'));
-		if(!preg_match('/o2o.zjx.com/',request()->server('HTTP_REFERER'))){
-			return $this->error('非法访问',url('index/index'));
-		}
+
+		// if(!preg_match('/o2o.zjx.com/',request()->server('HTTP_REFERER'))){
+		// 	return $this->error('非法访问',url('index/index'));
+		// }
 		if(!intval($id)){
 			return $this->error('数据不合法',url('index/index'));
 		}
 		if(!intval($count)){
 			return $this->error('数据不合法',url('index/index'));
+		}
+		$deal = model('deal')->find($id);
+		if($deal->total_count<=0){
+			return $this->error('商品已售光！');
 		}
 		$total_price = input('get.total_price',0,'floatval');
 		$data = [
@@ -42,16 +47,16 @@ class Order extends Base
 		];
 		try{
 			$orderId = model('order')->add($data);
+			$deal = model('deal')->where(['id'=>$id])->setDec('total_count');
 		}catch(\Exception $e){
-			return $this->error('下单失败！','');
+			return $this->error('下单失败！');
 		}
 
-		if(!$orderId){
-			return $this->error('下单失败!');
+		if(!$orderId || !$deal){
+			return $this->error('下单失败!2');
 		}
 		$this->redirect(url('pay/index',['id'=>$orderId]));
 	}
-	
 
 	/**
 	 * 商品订单确认页面
@@ -73,6 +78,9 @@ class Order extends Base
 			'count'			=> $count,
 		]);
 	}
+
+
+
 }
 
  ?>

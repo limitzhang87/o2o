@@ -428,7 +428,7 @@ table {
 }
 .secondly{
     overflow: hidden;
-    display: none;
+    /*display: none;*/
 }
 .secondly h1.title {
     margin-left: 20px;

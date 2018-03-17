@@ -47,7 +47,6 @@ class Lists extends Base
 		//获取排序条件
 		$order = input('get.order');
 		$deals = model('deal')->getDealByCondition($where,$order);
-		
 
 		return $this->fetch('',[
 			'_title'	=> $_title,

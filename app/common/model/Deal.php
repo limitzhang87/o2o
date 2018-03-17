@@ -87,7 +87,7 @@ class Deal extends BaseModel
 		$res = $this->where(implode(' AND ',$wheres))
 					->order($order)
 					->paginate();
-		echo $this->getLastSql();
+		//echo $this->getLastSql();
 		return $res;
 	}
 }
